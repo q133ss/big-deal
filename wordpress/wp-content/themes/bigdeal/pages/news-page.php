@@ -216,43 +216,7 @@ get_header();
                         Разработка сайта
                     </a>
                 </div>
-                <nav class="footer__nav">
-                    <ul class="footer__nav-items">
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                О фонде
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Текущие сборы
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Партнёры
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Благодарности
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Реквизиты
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Новости и статьи
-                            </a>
-                        </li>
-                    </ul>
-                    <a href="#" class="footer__info-text footer__nav-dev desktop">
-                        Разработка сайта
-                    </a>
-                </nav>
+                <?php get_template_part('/inc/footer-menu'); ?>
             </div>
         </div>
     </footer>

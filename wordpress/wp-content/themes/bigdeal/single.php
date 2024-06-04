@@ -121,14 +121,13 @@ get_header();
                 <div class="state-main__content container">
                     <div class="state-main__top">
                         <h1 class="state-main__title title">
-                            Гуманитарная помощь
-                            мирному населению
+                            <?php echo get_the_title(); ?>
                         </h1>
                         <p class="state-main__date"><?php echo get_the_date('d.m.Y'); ?></p>
                     </div>
                     <img
-                            src="<?php echo get_template_directory_uri(); ?>/img/main-directions-item-1.png"
-                            alt="Гуманитарная помощь мирному населению"
+                            src="<?php echo get_the_post_thumbnail_url(); ?>"
+                            alt="<?php echo get_the_post_thumbnail_caption(); ?>"
                             class="state-main__img"
                     />
                     <div class="state-main__body">

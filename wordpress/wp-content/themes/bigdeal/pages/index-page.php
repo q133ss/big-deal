@@ -458,29 +458,38 @@ get_header();
                     </button>
                     <div class="main-fees__slider-wrapper swiper">
                         <div class="main-fees__slider swiper-wrapper">
+                            <?php
+                            $args = array(
+                                'post_type' => 'fee',
+                                'posts_per_page' => 6,
+                            );
+                            $query = new WP_Query( $args );
+
+                            if ( $query->have_posts() ) :
+                                while ( $query->have_posts() ) : $query->the_post(); ?>
                             <div class="fees-item swiper-slide">
                                 <div class="fees-item__wrapper">
                                     <div class="fees-item__info">
                                         <h3 class="fees-item__title">
-                                            Новые классы «БАЗА»
+                                            <?php echo get_the_title(); ?>
                                         </h3>
                                         <div class="fees-item__fee">
                                             <p class="fees-item__fee-title">
                                                 Собрано:
                                             </p>
                                             <div class="fees-item__fee-line">
-                                                <div class="fees-item__fee-progress" data-result="3000000" data-progress="1294000"></div>
+                                                <div class="fees-item__fee-progress" data-result="<?php get_field('sum'); ?>" data-progress="100000"></div>
                                             </div>
                                             <div class="fees-item__fee-bot">
-                                                <p class="fees-item__fee-text">1 294 000 ₽</p>
-                                                <p class="fees-item__fee-text">из 3 000 000 ₽</p>
+                                                <p class="fees-item__fee-text">100 000 ₽</p>
+                                                <p class="fees-item__fee-text">из <?php echo get_field('sum'); ?> ₽</p>
                                             </div>
                                         </div>
                                         <p class="fees-item__text">
-                                            Создание пространства для доступа к знаниям и образованию для учащихся государственных школ на территории Российской Федерации за счет неотделимых улучшений и техники в школах.
+                                            <?php echo get_the_content(); ?>
                                         </p>
                                         <div class="fees-item__buttons fees-item__buttons-desktop">
-                                            <a href="#" class="button-white">
+                                            <a href="<?php echo get_the_permalink(); ?>" class="button-white">
                                         <span class="button-arrow">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
@@ -499,13 +508,13 @@ get_header();
                                         </div>
                                     </div>
                                     <img
-                                            src="<?php echo get_template_directory_uri(); ?>/img/fees-item-1.jpg"
-                                            alt="Новые классы «БАЗА»"
+                                            src="<?php echo get_the_post_thumbnail_url(); ?>"
+                                            alt="<?php echo get_the_post_thumbnail_caption(); ?>"
                                             class="fees-item__img"
                                     />
                                 </div>
                                 <div class="fees-item__buttons fees-item__buttons-mobile">
-                                    <a href="#" class="button-white">
+                                    <a href="<?php echo get_the_permalink(); ?>" class="button-white">
                                 <span class="button-arrow">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
@@ -523,136 +532,10 @@ get_header();
                                     </button>
                                 </div>
                             </div>
-                            <div class="fees-item swiper-slide">
-                                <div class="fees-item__wrapper">
-                                    <div class="fees-item__info">
-                                        <h3 class="fees-item__title">
-                                            Новые классы «БАЗА»
-                                        </h3>
-                                        <div class="fees-item__fee">
-                                            <p class="fees-item__fee-title">
-                                                Собрано:
-                                            </p>
-                                            <div class="fees-item__fee-line">
-                                                <div class="fees-item__fee-progress" data-result="3000000" data-progress="1294000"></div>
-                                            </div>
-                                            <div class="fees-item__fee-bot">
-                                                <p class="fees-item__fee-text">1 294 000 ₽</p>
-                                                <p class="fees-item__fee-text">из 3 000 000 ₽</p>
-                                            </div>
-                                        </div>
-                                        <p class="fees-item__text">
-                                            Создание пространства для доступа к знаниям и образованию для учащихся государственных школ на территории Российской Федерации за счет неотделимых улучшений и техники в школах.
-                                        </p>
-                                        <div class="fees-item__buttons fees-item__buttons-desktop">
-                                            <a href="#" class="button-white">
-                                        <span class="button-arrow">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
-</svg>
-                                        </span>
-                                                Подробнее
-                                            </a>
-                                            <button class="button" data-modal-toggle="modal-donate">
-                                        <span class="button-arrow">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
-</svg>
-                                        </span>
-                                                Помочь
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <img
-                                            src="<?php echo get_template_directory_uri(); ?>/img/fees-item-1.jpg"
-                                            alt="Новые классы «БАЗА»"
-                                            class="fees-item__img"
-                                    />
-                                </div>
-                                <div class="fees-item__buttons fees-item__buttons-mobile">
-                                    <a href="#" class="button-white">
-                                <span class="button-arrow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
-</svg>
-                                </span>
-                                        Подробнее
-                                    </a>
-                                    <button class="button" data-modal-toggle="modal-donate">
-                                <span class="button-arrow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
-</svg>
-                                </span>
-                                        Помочь
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="fees-item swiper-slide">
-                                <div class="fees-item__wrapper">
-                                    <div class="fees-item__info">
-                                        <h3 class="fees-item__title">
-                                            Новые классы «БАЗА»
-                                        </h3>
-                                        <div class="fees-item__fee">
-                                            <p class="fees-item__fee-title">
-                                                Собрано:
-                                            </p>
-                                            <div class="fees-item__fee-line">
-                                                <div class="fees-item__fee-progress" data-result="3000000" data-progress="1294000"></div>
-                                            </div>
-                                            <div class="fees-item__fee-bot">
-                                                <p class="fees-item__fee-text">1 294 000 ₽</p>
-                                                <p class="fees-item__fee-text">из 3 000 000 ₽</p>
-                                            </div>
-                                        </div>
-                                        <p class="fees-item__text">
-                                            Создание пространства для доступа к знаниям и образованию для учащихся государственных школ на территории Российской Федерации за счет неотделимых улучшений и техники в школах.
-                                        </p>
-                                        <div class="fees-item__buttons fees-item__buttons-desktop">
-                                            <a href="#" class="button-white">
-                                        <span class="button-arrow">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
-</svg>
-                                        </span>
-                                                Подробнее
-                                            </a>
-                                            <button class="button" data-modal-toggle="modal-donate">
-                                        <span class="button-arrow">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
-</svg>
-                                        </span>
-                                                Помочь
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <img
-                                            src="<?php echo get_template_directory_uri(); ?>/img/fees-item-1.jpg"
-                                            alt="Новые классы «БАЗА»"
-                                            class="fees-item__img"
-                                    />
-                                </div>
-                                <div class="fees-item__buttons fees-item__buttons-mobile">
-                                    <a href="#" class="button-white">
-                                <span class="button-arrow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
-</svg>
-                                </span>
-                                        Подробнее
-                                    </a>
-                                    <button class="button" data-modal-toggle="modal-donate">
-                                <span class="button-arrow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-    <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
-</svg>
-                                </span>
-                                        Помочь
-                                    </button>
-                                </div>
-                            </div>
+                            <?php
+                                endwhile;
+                            endif;
+                            ?>
                         </div>
                     </div>
                     <div class="main-fees__pagination slider-pagination"></div>
@@ -1089,43 +972,7 @@ get_header();
                         Разработка сайта
                     </a>
                 </div>
-                <nav class="footer__nav">
-                    <ul class="footer__nav-items">
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                О фонде
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Текущие сборы
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Партнёры
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Благодарности
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Реквизиты
-                            </a>
-                        </li>
-                        <li class="footer__nav-item">
-                            <a href="#" class="footer__nav-link">
-                                Новости и статьи
-                            </a>
-                        </li>
-                    </ul>
-                    <a href="#" class="footer__info-text footer__nav-dev desktop">
-                        Разработка сайта
-                    </a>
-                </nav>
+                <?php get_template_part('/inc/footer-menu'); ?>
             </div>
         </div>
     </footer>
