@@ -37,40 +37,7 @@ get_header();
                         </defs>
                     </svg>
                 </a>
-                <nav class="header__nav">
-                    <ul class="header__nav-items">
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                О фонде
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Текущие сборы
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Партнёры
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Благодарности
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Новости
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Реквизиты
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <?php get_template_part('/inc/main-menu'); ?>
                 <button class="button-white header__donate" data-modal-toggle="modal-donate">
                 <span class="button-arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -122,38 +89,7 @@ get_header();
             </button>
         </div>
         <nav class="header__burger-nav">
-            <ul class="header__burger-items">
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        О фонде
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Текущие сборы
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Партнёры
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Благодарности
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Новости
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Реквизиты
-                    </a>
-                </li>
-            </ul>
+            <?php get_template_part('/inc/mobile-menu'); ?>
         </nav>
         <div class="header__burger-help">
             <p class="header__burger-help-text">
