@@ -5,6 +5,11 @@
 
 get_header();
 ?>
+<style>
+    .header__nav-link , .header__logo{
+        color: #101010;
+    }
+</style>
 <body data-page="main-page">
 <div class="wrapper">
     <header class="header">
@@ -35,40 +40,7 @@ get_header();
                         </defs>
                     </svg>
                 </a>
-                <nav class="header__nav">
-                    <ul class="header__nav-items">
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                О фонде
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Текущие сборы
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Партнёры
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Благодарности
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Новости
-                            </a>
-                        </li>
-                        <li class="header__nav-item">
-                            <a href="#" class="header__nav-link">
-                                Реквизиты
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+                <?php get_template_part('/inc/main-menu'); ?>
                 <button class="button-white header__donate" data-modal-toggle="modal-donate">
                 <span class="button-arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -85,7 +57,7 @@ get_header();
             </div>
         </div>
     </header>
-    <div class="header__filler"></div>
+    <div class="header__filler" style="height: 111px; min-height: 111px;"></div>
     <div class="header__burger">
         <div class="header__burger-top">
             <a href="/" class="header__burger-logo">
@@ -121,36 +93,7 @@ get_header();
         </div>
         <nav class="header__burger-nav">
             <ul class="header__burger-items">
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        О фонде
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Текущие сборы
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Партнёры
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Благодарности
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Новости
-                    </a>
-                </li>
-                <li class="header__burger-item">
-                    <a href="#" class="header__burger-link">
-                        Реквизиты
-                    </a>
-                </li>
+                <?php get_template_part('/inc/mobile-menu'); ?>
             </ul>
         </nav>
         <div class="header__burger-help">
@@ -185,7 +128,7 @@ get_header();
 
                     if ( $query->have_posts() ) :
                         while ( $query->have_posts() ) : $query->the_post(); ?>
-                        <a href="#" class="news__slider-link">
+                        <a href="<?php echo get_the_permalink(); ?>" class="news__slider-link">
                         <img
                             src="<?php echo get_the_post_thumbnail_url(); ?>"
                             alt="<?php echo get_the_post_thumbnail_caption(); ?>"
