@@ -135,13 +135,38 @@ get_header();
                                 <p class="fees-item__fee-title">
                                     Собрано:
                                 </p>
+
+                                <?php
+                                // Получаем текущий ID поста типа 'fee'
+                                $fee_id = get_the_id();
+
+                                // Проверяем, что $fee_id не пустой и существует
+                                if ($fee_id) {
+                                global $wpdb;
+                                $table_name = $wpdb->prefix . 'donations';
+
+                                // Выполняем запрос для получения суммы donation_amount
+                                $total_donation_amount = $wpdb->get_var(
+                                    $wpdb->prepare(
+                                        "SELECT SUM(donation_amount) FROM $table_name WHERE fee_id = %d AND status = 'done'",
+                                        $fee_id
+                                    )=
+                                );
+
+                                // Если total_donation_amount равен null, устанавливаем его в 0
+                                $total_donation_amount = $total_donation_amount ? $total_donation_amount : 0;
+
+                                // Выводим HTML с атрибутом data-progress
+                                ?>
+
                                 <div class="fees-item__fee-line">
-                                    <div class="fees-item__fee-progress" data-result="<?php echo get_field('sum'); ?>" data-progress="100000"></div>
+                                    <div class="fees-item__fee-progress" data-result="<?php echo get_field('sum'); ?>" data-progress="<?php echo esc_attr($total_donation_amount); ?>"></div>
                                 </div>
                                 <div class="fees-item__fee-bot">
-                                    <p class="fees-item__fee-text">100000 ₽</p>
+                                    <p class="fees-item__fee-text"><?php echo esc_attr($total_donation_amount); ?> ₽</p>
                                     <p class="fees-item__fee-text">из <?php echo get_field('sum'); ?> ₽</p>
                                 </div>
+                                <?php } ?>
                             </div>
                             <p class="fees-item__text">
                                 <?php echo get_the_content(); ?>

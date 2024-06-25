@@ -21,12 +21,13 @@
         <h2 class="modal__title">
             Выберите цель пожертвования
         </h2>
-        <form class="modal__form">
+        <form id="donate_form" class="modal__form">
             <div class="modal__form-col">
                 <div class="select-wrapper" data-select>
                     <input
                             type="text"
                             hidden
+                            name="transport_method"
                     >
                     <label class="select-label">
                         Способ перевозки
@@ -53,11 +54,66 @@
                         </ul>
                     </div>
                 </div>
+
+                <div class="select-wrapper" data-select>
+                    <input
+                            type="text"
+                            hidden
+                            name="fee_id"
+                    >
+                    <label class="select-label">
+                        Сбор
+                    </label>
+                    <div class="select">
+                        <button type="button" class="select-content">
+                            <span>
+                            </span>
+                            <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.1035 7.73554L13.076 14.652C12.9227 14.8037 12.7157 14.8888 12.5 14.8888C12.2844 14.8888 12.0774 14.8037 11.924 14.652L4.89654 7.73704C4.74226 7.58543 4.5346 7.50048 4.31829 7.50048C4.10198 7.50048 3.89433 7.58543 3.74004 7.73704C3.66407 7.81111 3.60369 7.89963 3.56247 7.9974C3.52124 8.09516 3.5 8.20019 3.5 8.3063C3.5 8.4124 3.52124 8.51742 3.56247 8.61519C3.60369 8.71295 3.66407 8.80148 3.74004 8.87554L10.766 15.7905C11.2288 16.2449 11.8515 16.4995 12.5 16.4995C13.1486 16.4995 13.7713 16.2449 14.234 15.7905L21.26 8.87554C21.3362 8.80146 21.3968 8.71284 21.4382 8.61493C21.4795 8.51703 21.5009 8.41183 21.5009 8.30554C21.5009 8.19926 21.4795 8.09406 21.4382 7.99615C21.3968 7.89825 21.3362 7.80963 21.26 7.73554C21.1058 7.58393 20.8981 7.49898 20.6818 7.49898C20.4655 7.49898 20.2578 7.58393 20.1035 7.73554Z" fill="currentColor"/>
+                            </svg>
+                        </button>
+                        <ul class="select-items">
+                            <?php
+                            // Аргументы для запроса
+                            $args = array(
+                                'post_type' => 'fee',  // Тип поста
+                                'posts_per_page' => -1, // Все посты
+                                'post_status' => 'publish', // Только опубликованные посты
+                            );
+
+                            // Выполнение запроса
+                            $query = new WP_Query($args);
+
+                            // Проверка наличия постов
+                            if ($query->have_posts()) {
+                                // Цикл вывода постов
+                                while ($query->have_posts()) {
+                                    $query->the_post();
+                                    ?>
+                                    <li class="select-items__item">
+                                        <button type="button" class="select-items__item-button" data-select-value="<?php echo esc_attr(get_the_title()); ?>">
+                                            <?php the_title(); ?>
+                                        </button>
+                                    </li>
+                                    <?php
+                                }
+                                // Сброс данных поста
+                                wp_reset_postdata();
+                            } else {
+                                // Если нет постов
+                                echo '<li class="select-items__item">Нет доступных сборов</li>';
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </div>
+
                 <div class="input__wrapper">
                     <label class="input__label">
                         Имя*
                     </label>
                     <input
+                            name="name"
                             type="text"
                             class="input"
                     />
@@ -69,6 +125,8 @@
                         </label>
                         <input
                                 type="tel"
+                                name="phone"
+                                pattern="\+7\(\d{3}\)\d{3}-\d{2}-\d{2}"
                                 class="input"
                         />
                     </div>
@@ -78,6 +136,7 @@
                         </label>
                         <input
                                 type="email"
+                                name="email"
                                 class="input"
                         />
                     </div>
@@ -89,6 +148,7 @@
                     <input
                             type="number"
                             class="input"
+                            name="donation_amount"
                             id="inputDonateSum"
                             max="1000000"
                             min="1"
@@ -113,7 +173,7 @@
                     Согласен с <a href="#" target="_blank" class="text-blue">политикой конфиденциальности</a> и <a href="#" target="_blank" class="text-blue">договором оферты</a>
                 </span>
             </label>
-            <button class="modal__submit button" type="submit">
+            <button class="modal__submit button" type="submit" id="donate_send_btn">
                 <span class="button-arrow">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
     <path d="M1 1.14545H17M17 1.14545V16.8545M17 1.14545L1 16.8545" stroke="currentColor" stroke-width="2"/>
@@ -127,5 +187,34 @@
 
 <?php wp_footer(); ?>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+<script>
+    jQuery(document).ready(function($) {
+        $('#donate_form').on('submit', function(event) {
+            event.preventDefault(); // Отменяем стандартное действие отправки формы
+
+            var formData = $(this).serialize(); // Сериализуем данные формы
+
+            $.ajax({
+                type: 'POST', // Метод запроса
+                url: '<?php echo admin_url( "admin-ajax.php" ) ?>', // URL для отправки AJAX запроса, определенный в WordPress
+                data: {
+                    action: 'create_yookassa_payment', // Название AJAX действия
+                    form_data: formData, // Данные формы для передачи на сервер
+                    security: '<?php echo wp_create_nonce("donate_nonce"); ?>'
+                },
+                success: function(response) {
+                    // редирект на URL платежа
+                    window.location.href = response;
+                },
+                error: function(xhr, status, error) {
+                    // Обработка ошибок AJAX запроса
+                    console.error('Ошибка AJAX: ' + error);
+                }
+            });
+        });
+    });
+</script>
 </body>
 </html>

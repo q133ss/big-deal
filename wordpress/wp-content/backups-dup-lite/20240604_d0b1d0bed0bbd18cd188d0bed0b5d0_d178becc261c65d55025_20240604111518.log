@@ -1,0 +1,77 @@
+********************************************************************************
+DUPLICATOR-LITE PACKAGE-LOG: 04.06.2024 11:15
+NOTICE: Do NOT post to public sites or forums 
+********************************************************************************
+VERSION:	1.5.9
+WORDPRESS:	6.5.3
+PHP INFO:	8.2.19 | SAPI: apache2handler
+SERVER:		Apache/2.4.59 (Debian) 
+PHP TIME LIMIT: (0) no time limit imposed 
+PHP MAX MEMORY: 4294967296 (128M default) 
+MEMORY STACK: 6MB
+
+********************************************************************************
+DATABASE:
+********************************************************************************
+BUILD MODE:   PHP(query limit - 100)
+MYSQLTIMEOUT: 5000
+MYSQLDUMP:    Not Supported
+TABLES: total:13 | filtered:0 | create:13
+FILTERED: []
+SQL CREATED: 20240604_d0b1d0bed0bbd18cd188d0bed0b5d0_d178becc261c65d55025_20240604111518_database.sql
+SQL FILE SIZE: 1.71MB (1791093)
+SQL FILE TIME: 2024-06-04 11:15:36
+SQL RUNTIME: 0.38 sec.
+
+********************************************************************************
+ARCHIVE (ZIP):
+********************************************************************************
+ARCHIVE DIR:  /var/www/html
+ARCHIVE FILE: 20240604_d0b1d0bed0bbd18cd188d0bed0b5d0_d178becc261c65d55025_20240604111518_archive.zip
+FILTERS: *OFF*
+DIRS:
+	not set
+FILES:
+	not set
+EXTS:  not set
+----------------------------------------
+COMPRESSING
+SIZE:	160.28MB
+STATS:	Dirs 591 | Files 4,623
+SQL ADDED: 20240604_d0b1d0bed0bbd18cd188d0bed0b5d0_d178becc261c65d55025_20240604111518_database.sql
+ZipArchive Object
+(
+    [lastId] => 5213
+    [status] => 0
+    [statusSys] => 0
+    [numFiles] => 5214
+    [filename] => /var/www/html/wp-content/backups-dup-lite/tmp/20240604_d0b1d0bed0bbd18cd188d0bed0b5d0_d178becc261c65d55025_20240604111518_archive.zip
+    [comment] => 
+)
+
+FILE ADDED TO ZIP: 5213
+[PHP ERR][NOTICE] MSG:ob_flush(): Failed to flush buffer. No buffer to flush [CODE:8|FILE:/var/www/html/wp-content/plugins/duplicator/classes/utilities/class.u.php|LINE:173]
+do_action('wp_ajax_duplicator_package_build'), WP_Hook->do_action, WP_Hook->apply_filters, duplicator_package_build, DUP_Package->runZipBuild, DUP_Archive->build, DUP_Zip::create, DUP_Util::fcgiFlush, ob_flush, DUP_Handler::error, DUP_Handler::getMessage
+COMPRESSION RESULT: '1'
+COMPRESSED SIZE: 93.16MB
+ARCHIVE RUNTIME: 39.11 sec.
+MEMORY STACK: 8MB
+building installer
+ПРОВЕРКА АРХИВА НА ЦЕЛОСТНОСТЬ: ПРОЙДЕНА
+
+********************************************************************************
+INTEGRITY CHECKS:
+********************************************************************************
+SQL FILE: 1.71MB
+INSTALLER FILE: 73.49KB
+ARCHIVE FILE: 95.01MB 
+ОЖИДАЕМОЕ КОЛИЧЕСТВО ФАЙЛОВ/КАТОЛОГ: 5,214
+ФАКТИЧЕСКОЕ КОЛИЧЕСТВО ФАЙЛОВ/КАТАЛОГОВ: 5,213
+ТЕСТ ЛОГИКИ АРХИВА: Пройден
+
+********************************************************************************
+RECORD ID:[1]
+TOTAL PROCESS RUNTIME: 52.95 sec.
+PEAK PHP MEMORY USED: 12MB
+DONE PROCESSING => 20240604_d0b1d0bed0bbd18cd188d0bed0b5d0 04.06.2024 11:16
+
